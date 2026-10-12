@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.1.0] - 2026-10-12
 ### Added
 - Browse container images across registries in one window: a tree of sources, registries and repositories, the tags of the selected repository (digest, date, size), and the selected tag's details (platforms, layers with the command that created each one, config, labels, and a link to the source code when the image declares one).
 - AWS ECR: one source per AWS profile (access keys, SSO, `credential_process`, assumed roles) and for `AWS_ACCESS_KEY_ID`, showing the account; extra regions per profile in Sources. ECR registries you reach only with `docker login` (for example in an account none of your profiles covers) show as sources of their own, and a registry uses its `docker login` when the AWS route fails.
