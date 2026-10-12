@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.1.7] - 2026-10-12
 ### Added
 - Vulnerabilities: PullEmUp scans images itself, with no other tool to install. It reads the packages installed in the image's layers and checks them on OSV.dev, Google's free vulnerability database: Debian, Ubuntu, Alpine, Wolfi and Chainguard packages, Python, npm, Ruby and PHP packages, the Python interpreter of the official python images, and the Java libraries inside jar, war and ear files. Only package names and versions are sent, after you allow it once. Each finding shows its severity, score and the version that fixes it; layers already read aren't downloaded again, so rescans are quick. Works for registry and local images.
 - Java archives without Maven information can be identified on Maven Central by their SHA-1 hash, after you allow it separately; only the hash is sent.
