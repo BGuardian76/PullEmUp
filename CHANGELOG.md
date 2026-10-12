@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Vulnerabilities: PullEmUp scans images itself, with no other tool to install. It reads the packages installed in the image's layers and checks them on OSV.dev, Google's free vulnerability database: Debian, Ubuntu, Alpine, Wolfi and Chainguard packages, Python, npm, Ruby and PHP packages, the Python interpreter of the official python images, and the Java libraries inside jar, war and ear files. Only package names and versions are sent, after you allow it once. Each finding shows its severity, score and the version that fixes it; layers already read aren't downloaded again, so rescans are quick. Works for registry and local images.
+- Java archives without Maven information can be identified on Maven Central by their SHA-1 hash, after you allow it separately; only the hash is sent.
+- ECR images show the registry's own scan findings (basic scanning or Amazon Inspector), next to PullEmUp's.
+- The vulnerability report opens in its own window, like the layers inspector, with filters by severity, fix available and package. A summary stays in the tag's Overview.
+- Helm charts and other OCI artifacts show as what they are: a chart's version, app version, dependencies and links, and the Copy menu offers `helm pull`, `helm show values` and `helm install` (`oras pull` for other artifacts) instead of `docker pull`.
+- The sources pane can be hidden (button or Ctrl+B), with the selected registry, repository and tag shown in the header. Pane sizes are kept between runs.
+### Changed
+- The tag details header is shorter: the pull and run commands are in one Copy menu next to the title, and fields an image doesn't set are left out.
+- The tag list keeps one line per tag: shorter dates (the full date on hover), and the digest and platforms columns appear only when the pane is wide enough.
+### Fixed
+- Downloading a large layer no longer fails with "error decoding response body" when it takes more than 30 seconds; only a download that stalls fails.
 
 ## [0.1.5] - 2026-10-12
 ### Added
