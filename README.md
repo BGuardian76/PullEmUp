@@ -2,7 +2,7 @@
 
 # PullEmUp
 
-Browse the container images in all your registries from one desktop app: AWS ECR, Azure ACR, GitHub Container Registry, Docker Hub and any OCI registry. PullEmUp uses the logins already on your machine and is read-only.
+Browse the container images in all your registries from one desktop app: AWS ECR, Azure ACR, GitHub Container Registry, Docker Hub and any OCI registry, plus the images on your own Docker or Podman engine. Inspect their layers and files, and compare two tags. PullEmUp uses the logins already on your machine and is read-only.
 
 This repository hosts **installers and release notes only**; it is the public download point for PullEmUp. Source code is developed elsewhere, and builds are published here as [GitHub Releases](../../releases).
 
@@ -26,6 +26,7 @@ PullEmUp finds registries through the tools you already use and never stores cre
 | GitHub Container Registry | `gh auth login -s read:packages`, a `GH_TOKEN`, or `docker login ghcr.io` |
 | Docker Hub | `docker login -u <username>` with a personal access token |
 | Other registries | `docker login <host>` or `podman login <host>` |
+| Images on this machine | No login: a running Docker Desktop, Docker Engine or Podman (for Podman on Linux, `systemctl --user start podman.socket`) |
 
 Registries it can't find on its own (a public registry, or an Azure registry you can pull from but can't see in your subscription) can be added by hand in **Sources**.
 

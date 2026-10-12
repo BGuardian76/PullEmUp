@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Images on this machine: a "This machine" source for the local Docker Desktop, Docker Engine or Podman, with no registry login needed. Tags show their date, size and platform; details, history and the layers inspector (files, previews, Save as, Compare) work as for registry images, and a `docker run` line replaces the pull commands. Untagged images are listed under `<none>`. When the engine isn't running, the socket needs permission, or Podman's API is off, the source says so and shows how to fix it.
+- Where a local image came from: its details list the registries it was pulled from, whether each registry's tag still points to the same image, and a button to open that tag. Registries none of your sources cover are checked publicly (or with that host's `docker login`), reading only the tag's digest, so Docker Hub's pull limit isn't used.
+- Compare a local image with its registry tag: layers with the same contents count as the same layer, and their file lists aren't downloaded again.
+- Compare lines up layers by build step: a step only one tag has no longer shifts the rows after it, a step whose command changed shows both commands, and a replaced base image shows as one row.
+- Compare checks file contents: listing a layer now records a hash of each file and its owner, so a file counts as changed only when its contents, size, permissions or owner differ, and "Same contents" marks files a rebuild only wrote again. Rebuilt layers say whether they hold the same files.
+- Binary files open in a side-by-side hex and ASCII comparison marking the bytes that differ, with a jump to the first difference and an option to show only the rows that differ.
+- Compare names files by the tag that has them ("Only in v3") instead of Added and Deleted, and a Swap button puts the other tag on the left.
+### Fixed
+- Docker Hub repository and tag lists are sorted newest first again; Docker Hub had changed what its sort order means.
+- Files with the same permissions no longer count as changed when one image's builder records the file type in the mode and the other's doesn't.
+- The tag list scrolls to a tag opened from search, favorites or a local image's origin, loading more of the list when needed.
 
 ## [0.1.0] - 2026-10-12
 ### Added
