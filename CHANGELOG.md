@@ -21,5 +21,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Image details are kept in a disk cache, so viewing a tag again is instant and doesn't count against Docker Hub's pull limit. Multi-platform images load the other platforms only when you pick one, for the same reason. The cache is capped at 100 MB and can be cleared in Sources.
 - Busy registries are handled gently: at most 6 requests at a time per registry, and short-lived errors (rate limits, server errors, dropped connections) are retried a couple of times before an error is shown. When Docker Hub's pull limit is used up, the message shows the limit and suggests `docker login`, which raises it.
 - Old Docker schema 1 images show their digest and build date, and their details explain the old format instead of failing.
+- Tags show their platforms (such as `linux/amd64, linux/arm64`); details are read only for the rows on screen, so long tag lists stay fast. Tags pointing at the same image can be grouped into one row, and a tag's digest can be copied.
+- Favorites: star a repository to keep it in a Favorites group at the top of the tree. A filter box narrows the tree by name.
+- Open in the registry's website: the AWS console, the Azure portal, GitHub, Docker Hub or Quay, at the repository or tag where the site allows it.
+- Signatures, SBOMs and provenance: the tag's details list what's attached to the image (OCI referrers, cosign signatures and attestations, BuildKit attestations) and, from the build provenance, the source repository, commit and builder. Signatures are reported as found, not verified.
+- Lists are saved between runs, so they show at once after a restart and while offline; an offline bar offers to try again. Each list has a refresh button, and errors offer Retry.
+- Azure: Show all / Hide all for a tenant's subscriptions in Sources; hidden tenants aren't checked.
+- Layers inspector, a window of its own per image:
+  - **History**: the build steps as Dockerfile lines with each step's layer size, and the whole Dockerfile to copy.
+  - **Files**: the image's filesystem, merged from all layers or one layer at a time, with what each layer added, changed or deleted and the space wasted by files later overwritten. Preview text files, save any file with Save as, and search for a file across all layers. Layers up to 50 MB load on their own; larger ones wait for a click. File lists are saved (up to 200 MB), so reopening an image downloads nothing.
+  - **Compare**: diff the image against another tag of the same repository by layers, config settings and files, with the biggest changes listed, and a side-by-side text diff of a file's two versions.
 - Light and dark themes following the system.
 - About dialog: click **PullEmUp** in the toolbar to see the version.
