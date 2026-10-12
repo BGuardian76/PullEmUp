@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.1.5] - 2026-10-12
 ### Added
 - Images on this machine: a "This machine" source for the local Docker Desktop, Docker Engine or Podman, with no registry login needed. Tags show their date, size and platform; details, history and the layers inspector (files, previews, Save as, Compare) work as for registry images, and a `docker run` line replaces the pull commands. Untagged images are listed under `<none>`. When the engine isn't running, the socket needs permission, or Podman's API is off, the source says so and shows how to fix it.
 - Where a local image came from: its details list the registries it was pulled from, whether each registry's tag still points to the same image, and a button to open that tag. Registries none of your sources cover are checked publicly (or with that host's `docker login`), reading only the tag's digest, so Docker Hub's pull limit isn't used.
