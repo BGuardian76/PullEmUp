@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.1.11] - 2026-10-13
 ### Added
 - Base image: a tag's details show the image it was built on, its Dockerfile's last `FROM`. Images rarely record it, so PullEmUp recognizes it from what the image inherited (its version settings and build steps) and confirms it on Docker Hub or Microsoft's registry by comparing layers. Docker Hub is asked through its website API, which doesn't count toward the pull limit. Recognized: python, node, eclipse-temurin, nginx, php and ruby (each with its variants: slim or full, JRE or JDK, fpm or apache, Debian or Alpine...), Microsoft's .NET images (sdk, aspnet, runtime), and Debian, Ubuntu and Alpine themselves. A base recorded by the build is used when there is one.
 - Base image updates: the base is compared with the tag that follows its newer builds (`python:3.11-slim-trixie` for `python:3.11.15-slim-trixie`), which says whether it's the current build, or whether a newer version or a rebuild with newer OS packages is out.
