@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Help: a Help button in the header opens a window with PullEmUp's documentation: what each screen shows, where each piece of information comes from, what's kept on your computer and what's sent, how the vulnerability scanner works, troubleshooting, and these release notes. The vulnerability report, the Sources panel and error messages link to the page that explains them.
+- Vulnerabilities in the tag list: a new Vulns column shows each tag's last scan by PullEmUp, with the worst severity found and how many (a check when nothing was found), dimmed when the scan is over 30 days old. Hover it for the counts per platform, how many have a fix and the scan date; click it to open the report. Sort by it to see the worst tags first. It only reads saved scans, so it downloads nothing.
+- The scanner checks RPM-based images: Red Hat and UBI, AlmaLinux, Rocky Linux, SUSE and BCI, openSUSE Leap and Tumbleweed, Azure Linux (CBL-Mariner), openEuler and Mageia. For images whose OS packages OSV.dev doesn't cover (Fedora, Amazon Linux, CentOS, Oracle Linux), the report says so, and the rest of the image is still checked.
+- The scanner checks Go programs (the Go version and modules built into every Go binary) and Rust programs built with `cargo auditable`. Rust programs without a list of their crates are counted in the report, so you know they weren't checked.
+- The scanner checks .NET apps: the NuGet packages and runtime packs listed in their `.deps.json` files.
+- The scanner checks Java runtimes (Temurin, Corretto, Zulu and others) by the version in their `release` file. Java built by the distribution is checked as an OS package instead, and a runtime's own jars are no longer reported as unidentified Java archives.
+- Tag details can sit below the tag list instead of beside it: switch with the new button in the header. Each arrangement keeps its own pane sizes.
+- Search offers to add an image reference you paste that isn't in your sources: it pins a Docker Hub image, or adds the repository to its registry in Sources, then opens it. References in GHCR, ECR or ACR registries already in the tree open directly.
+### Fixed
+- After a refresh, tag details no longer fail with "Unknown Azure source" while sources are still being detected.
+- A thin strip of the Sources panel, search and the Copy menu could not be clicked where a pane divider ran behind it.
 
 ## [0.1.7] - 2026-10-12
 ### Added
