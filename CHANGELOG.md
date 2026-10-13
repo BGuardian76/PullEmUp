@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.1.10] - 2026-10-13
 ### Added
 - Help: a Help button in the header opens a window with PullEmUp's documentation: what each screen shows, where each piece of information comes from, what's kept on your computer and what's sent, how the vulnerability scanner works, troubleshooting, and these release notes. The vulnerability report, the Sources panel and error messages link to the page that explains them.
 - Vulnerabilities in the tag list: a new Vulns column shows each tag's last scan by PullEmUp, with the worst severity found and how many (a check when nothing was found), dimmed when the scan is over 30 days old. Hover it for the counts per platform, how many have a fix and the scan date; click it to open the report. Sort by it to see the worst tags first. It only reads saved scans, so it downloads nothing.
