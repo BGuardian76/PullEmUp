@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Base image: a tag's details show the image it was built on, its Dockerfile's last `FROM`. Images rarely record it, so PullEmUp recognizes it from what the image inherited (its version settings and build steps) and confirms it on Docker Hub or Microsoft's registry by comparing layers. Docker Hub is asked through its website API, which doesn't count toward the pull limit. Recognized: python, node, eclipse-temurin, nginx, php and ruby (each with its variants: slim or full, JRE or JDK, fpm or apache, Debian or Alpine...), Microsoft's .NET images (sdk, aspnet, runtime), and Debian, Ubuntu and Alpine themselves. A base recorded by the build is used when there is one.
+- Base image updates: the base is compared with the tag that follows its newer builds (`python:3.11-slim-trixie` for `python:3.11.15-slim-trixie`), which says whether it's the current build, or whether a newer version or a rebuild with newer OS packages is out.
+- The layers inspector marks where the image's own build steps start, and has two copy buttons: **Copy as Dockerfile**, `FROM` the base image and then only the image's own steps, close to the original Dockerfile, with comments where the history doesn't record something; and **Copy full build history**, every step as recorded.
+- Images used by the build: for images built with BuildKit provenance, Signatures and provenance lists every image the build pulled, such as the SDK or compiler stage of a multi-stage build, which leaves no other trace in the image. The Dockerfile frontend and SBOM scanner are labeled as such, and each image can be opened.
+- Raw tab: a tag's index, manifest and config exactly as the registry sent them, colored and copyable, including annotations no other tab shows. For local images, the engine's `docker image inspect`.
+### Changed
+- Settings replaces the Sources panel: a dialog with sections for Sources, Registries (AWS regions, Docker Hub, registries added by hand), Vulnerability scan, Base images and Data (cache), opened with the gear button or Ctrl+,. Changes apply when you click Save, and Cancel discards them.
+### Fixed
+- Provenance without Git information no longer shows one of the build's images as the source repository.
 
 ## [0.1.10] - 2026-10-13
 ### Added
