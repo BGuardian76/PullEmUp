@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Images by base: a registry's new button in the sources pane opens a window that reads the newest tag of each of its repositories and groups the images by the base image they were built on. Each image shows whether its base is up to date, has a rebuild with newer OS packages, or has a newer version, so you see which images need rebuilding. Filter by repository, tag, base or OS (type `python:3.11` to find every image on it), show only the images that are out of date, and copy the list as CSV or Markdown. The survey is saved and shows at once next time; **Survey again** reads the registry again.
+- Approved base images: list the bases your team allows in Settings, under Base images, with `*` for any text (`python:3.12*`, `mcr.microsoft.com/dotnet/aspnet:8.0*`). Images by base marks images built on any other base as not approved.
+### Changed
+- Base image checks on Docker Hub and Microsoft's registry are kept on disk for a day, so they aren't asked again after a restart. **Clear cache** clears them too.
+### Fixed
+- A registry added by hand with repositories listed now shows only those repositories, without asking the registry for its full list. Adding `mcr.microsoft.com` with `dotnet/aspnet` showed all of Microsoft's nearly 3,900 repositories, and could stay on "Loading…" for a long time after saving Settings.
 
 ## [0.1.11] - 2026-10-13
 ### Added
